@@ -1,0 +1,31 @@
+name: practise_rifat
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=2.17.6 <3.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get_cli: ^1.8.1
+  get: 4.6.5
+  sqflite: ^2.0.3+1
+  get_storage: ^2.0.3
+  path_provider: '>=0.3.0'
+  path: ^1.8.1
+  http: ^0.13.5
+
+  flutter: 
+    sdk: flutter
+  image_picker: ^0.8.5+3
+  animated_bottom_navigation_bar: ^1.1.0
+
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+
