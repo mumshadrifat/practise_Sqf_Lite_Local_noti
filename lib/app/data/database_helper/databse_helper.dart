@@ -92,7 +92,7 @@ class DataBaseHelper {
     Database? db = await instance.database;
 
     // get all rows
-    List<Map> result = await db!.query("inspObsIndviStrTmps");
+    List<Map> result = await db!.rawQuery("SELECT * FROM inspObsIndviStrTmps WHERE insId=1");
 
     // get single row
     //List<Map> result = await db.query(DatabaseHelper.table,
