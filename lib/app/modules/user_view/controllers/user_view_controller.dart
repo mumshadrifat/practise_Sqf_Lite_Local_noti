@@ -7,7 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:practise_rifat/app/model/userList.dart';
 import 'package:practise_rifat/app/model/user_upate_model.dart';
 
+import '../../../../main.dart';
 import '../../../data/repository/user_repo.dart';
+import '../../../noti.dart';
 
 class UserViewController extends GetxController {
   //TODO: Implement UserViewController
@@ -108,6 +110,7 @@ class UserViewController extends GetxController {
   void onInit() {
     super.onInit();
     getUserList();
+    Noti.intialize(flutterLocalNotificationsPlugin);
   }
 
   @override
