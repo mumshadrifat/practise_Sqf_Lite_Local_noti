@@ -166,6 +166,7 @@ class UserViewView extends GetView<UserViewController> {
                 notchSmoothness: NotchSmoothness.defaultEdge,
                 backgroundColor: Colors.white10,
                 activeColor: Colors.amberAccent,
+
                 icons: [
                   Icons.home,
                   Icons.search,
@@ -178,6 +179,11 @@ class UserViewView extends GetView<UserViewController> {
                   if (index == 2) {
                     Get.toNamed(Routes.FAVOURITE);
                   }
+                  if (index == 1) {
+                    Get.toNamed(Routes.XTRA_UI);
+                  }
+
+
                   else if (index == 0) {
                Noti.showBigTextNotification(title: "hello", body: "I am here man", fln: flutterLocalNotificationsPlugin);
                   }
