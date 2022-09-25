@@ -7,6 +7,7 @@ abstract class Routes {
   static const USER_VIEW = _Paths.USER_VIEW;
   static const FAVOURITE = _Paths.FAVOURITE;
   static const XTRA_UI = _Paths.XTRA_UI;
+  static const RADIO_LIST = _Paths.RADIO_LIST;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const USER_VIEW = '/user-view';
   static const FAVOURITE = '/favourite';
   static const XTRA_UI = '/xtra-ui';
+  static const RADIO_LIST = '/radio-list';
 }

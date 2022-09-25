@@ -4,6 +4,8 @@ import '../modules/favourite/bindings/favourite_binding.dart';
 import '../modules/favourite/views/favourite_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/radio_list/bindings/radio_list_binding.dart';
+import '../modules/radio_list/views/radio_list_view.dart';
 import '../modules/user_view/bindings/user_view_binding.dart';
 import '../modules/user_view/views/user_view_view.dart';
 import '../modules/xtra_ui/bindings/xtra_ui_binding.dart';
@@ -34,8 +36,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.XTRA_UI,
-      page: () =>  XtraUiView(),
+      page: () => XtraUiView(),
       binding: XtraUiBinding(),
+    ),
+    GetPage(
+      name: _Paths.RADIO_LIST,
+      page: () =>  RadioListView(),
+      binding: RadioListBinding(),
     ),
   ];
 }
