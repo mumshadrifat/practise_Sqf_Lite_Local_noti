@@ -177,7 +177,7 @@ class UserViewView extends GetView<UserViewController> {
                 onTap: (index) {
                   bottomNavIndex.value = index;
                   if (index == 2) {
-                    Get.toNamed(Routes.FAVOURITE);
+                    Get.toNamed(Routes.RADIO_BUTTON_IN_LIST);
                   }
                   if (index == 1) {
                     Get.toNamed(Routes.XTRA_UI);
