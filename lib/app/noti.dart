@@ -9,7 +9,7 @@ class Noti {
     var initializationSettings = new InitializationSettings(
         android: androidInitialize, iOS: iosInitialize);
 
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,);
   }
 
   static Future showBigTextNotification(

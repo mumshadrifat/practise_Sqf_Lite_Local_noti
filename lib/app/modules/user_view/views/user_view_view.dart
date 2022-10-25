@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_overlay_pro/animations/bouncing_line.dart';
 import 'package:practise_rifat/app/common_widget/button.dart';
 import 'package:practise_rifat/app/data/database_helper/databse_helper.dart';
 import 'package:practise_rifat/app/model/ins_model.dart';
@@ -16,6 +17,7 @@ import '../controllers/user_view_controller.dart';
 
 class UserViewView extends GetView<UserViewController> {
   UserViewView({Key? key}) : super(key: key);
+  RxBool showLoader = false.obs;
 
   RxInt bottomNavIndex = 0.obs;
 
@@ -42,55 +44,68 @@ class UserViewView extends GetView<UserViewController> {
               ),
               Expanded(
                   child: Obx(
-                () => ListView.builder(
-                    itemCount: controller.userList.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.only(bottom: 10),
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  controller.userList[index].email.toString(),
-                                  //  "jj",
+                        () =>
+                        ListView.builder(
+                            itemCount: controller.userList.length,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  showLoader.value = true;
+                                 // Get.toNamed(Routes.IMAGE_GALLERY_SAVER);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  margin: EdgeInsets.only(bottom: 10),
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment
+                                        .spaceBetween,
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment
+                                            .start,
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .start,
+                                        children: [
+                                          Text(
+                                            controller.userList[index].email
+                                                .toString(),
+                                            //  "jj",
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            controller.userList[index].id
+                                                .toString(),
+                                          ),
+                                          Text(
+                                            controller.userList[index].firstName
+                                                .toString(),
+                                            //  "hh"
+                                          ),
+                                          Text(
+                                            controller.userList[index].lastName
+                                                .toString(),
+                                          ),
+                                        ],
+                                      ),
+                                      ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                              10),
+                                          child: Image.network(controller
+                                              .userList[index].avatar
+                                              .toString())),
+                                    ],
+                                  ),
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  controller.userList[index].id.toString(),
-                                ),
-                                Text(
-                                  controller.userList[index].firstName
-                                      .toString(),
-                                  //  "hh"
-                                ),
-                                Text(
-                                  controller.userList[index].lastName
-                                      .toString(),
-                                ),
-                              ],
-                            ),
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Image.network(controller
-                                    .userList[index].avatar
-                                    .toString())),
-                          ],
-                        ),
-                      );
-                    }),
-              )),
+                              );
+                            }),
+                  )),
               SizedBox(
                 height: 10,
               ),
@@ -114,21 +129,22 @@ class UserViewView extends GetView<UserViewController> {
                 height: 10,
               ),
               Obx(
-                () => controller.imagePath.value == "r"
+                    () =>
+                controller.imagePath.value == "r"
                     ? CustomButton(
-                        height: 60,
-                        width: 150,
-                        text: "Nope",
-                        radius: 10,
-                        backgroundColour: AppColors.primary_color,
-                      )
+                  height: 60,
+                  width: 150,
+                  text: "Nope",
+                  radius: 10,
+                  backgroundColour: AppColors.primary_color,
+                )
                     : Container(
-                        height: 20,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Image.file(File(controller.imagePath.value)),
-                      ),
+                  height: 20,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Image.file(File(controller.imagePath.value)),
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -157,40 +173,56 @@ class UserViewView extends GetView<UserViewController> {
                   radius: 10,
                   backgroundColour: AppColors.primary_color,
                 ),
+
               ),
+              Obx(() => showLoader.value ? Container(
+                color: Colors.black45,
+                height: 50,
+                width: double.maxFinite,
+                child: LoadingBouncingLine.circle(
+                  borderColor: Colors.cyan,
+                  borderSize: 3.0,
+                  size: 120.0,
+                  backgroundColor: Colors.cyanAccent,
+                  duration: Duration(milliseconds: 500),
+                ),
+              ) : Container(),),
             ],
           ),
           bottomNavigationBar: Obx(
-            () => AnimatedBottomNavigationBar(
-                gapLocation: GapLocation.center,
-                notchSmoothness: NotchSmoothness.defaultEdge,
-                backgroundColor: Colors.white10,
-                activeColor: Colors.amberAccent,
+                () =>
+                AnimatedBottomNavigationBar(
+                    gapLocation: GapLocation.center,
+                    notchSmoothness: NotchSmoothness.defaultEdge,
+                    backgroundColor: Colors.white10,
+                    activeColor: Colors.amberAccent,
 
-                icons: [
-                  Icons.home,
-                  Icons.search,
-                  Icons.favorite,
-                  Icons.trending_flat_outlined
-                ],
-                activeIndex: bottomNavIndex.value,
-                onTap: (index) {
-                  bottomNavIndex.value = index;
-                  if (index == 2) {
-                    Get.toNamed(Routes.RADIO_LIST);
-                  }
-                  if (index == 1) {
-                    Get.toNamed(Routes.XTRA_UI);
-                  }
+                    icons: [
+                      Icons.home,
+                      Icons.search,
+                      Icons.favorite,
+                      Icons.trending_flat_outlined
+                    ],
+                    activeIndex: bottomNavIndex.value,
+                    onTap: (index) {
+                      bottomNavIndex.value = index;
+                      if (index == 2) {
+                        Get.toNamed(Routes.RADIO_LIST);
+                      }
+                      if (index == 1) {
+                        Get.toNamed(Routes.XTRA_UI);
+                      }
 
 
-                  else if (index == 0) {
-               Noti.showBigTextNotification(title: "hello", body: "I am here man", fln: flutterLocalNotificationsPlugin);
-                  }
-                }),
+                      else if (index == 0) {
+                        Noti.showBigTextNotification(title: "hello",
+                            body: "I am here man",
+                            fln: flutterLocalNotificationsPlugin);
+                      }
+                    }),
           )
-          //other params
-          ),
+        //other params
+      ),
     );
   }
 }

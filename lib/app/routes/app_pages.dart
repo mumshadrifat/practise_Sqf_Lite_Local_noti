@@ -4,6 +4,8 @@ import '../modules/favourite/bindings/favourite_binding.dart';
 import '../modules/favourite/views/favourite_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/image_gallery_saver/bindings/image_gallery_saver_binding.dart';
+import '../modules/image_gallery_saver/views/image_gallery_saver_view.dart';
 import '../modules/radio_list/bindings/radio_list_binding.dart';
 import '../modules/radio_list/views/radio_list_view.dart';
 import '../modules/user_view/bindings/user_view_binding.dart';
@@ -41,8 +43,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.RADIO_LIST,
-      page: () =>  RadioListView(),
+      page: () => RadioListView(),
       binding: RadioListBinding(),
+    ),
+    GetPage(
+      name: _Paths.IMAGE_GALLERY_SAVER,
+      page: () => const ImageGallerySaverView(),
+      binding: ImageGallerySaverBinding(),
     ),
   ];
 }
