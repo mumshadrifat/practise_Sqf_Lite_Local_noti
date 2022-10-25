@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loading_overlay_pro/animations/bouncing_line.dart';
 import 'package:practise_rifat/app/common_widget/button.dart';
 import 'package:practise_rifat/app/data/database_helper/databse_helper.dart';
 import 'package:practise_rifat/app/model/ins_model.dart';
@@ -17,7 +16,6 @@ import '../controllers/user_view_controller.dart';
 
 class UserViewView extends GetView<UserViewController> {
   UserViewView({Key? key}) : super(key: key);
-  RxBool showLoader = false.obs;
 
   RxInt bottomNavIndex = 0.obs;
 
